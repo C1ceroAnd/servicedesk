@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  name             String
+  email            String    @unique
+  password         String
+  role             String    @default("USER")
+
+  localId          Int?
+  local            Local?    @relation(fields: [localId], references: [id])
+
+  ticketsCreated   Ticket[]  @relation("UserCreated")
+  ticketsAtendidos Ticket[]  @relation("TecnicoAtendimento")
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@map("users")
+}
+
+model Local {
+  id        Int       @id @default(autoincrement())
+  name      String
+  active    Boolean   @default(true)
+
+  users     User[]
+  tickets   Ticket[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("locals")
+}
+
+model Ticket {
+  id              Int           @id @default(autoincrement())
+  title           String
+  description     String
+  status          String        @default("PENDING")
+
+  userId          Int
+  user            User          @relation("UserCreated", fields: [userId], references: [id], onDelete: Cascade)
+
+  localId         Int
+  local           Local         @relation(fields: [localId], references: [id], onDelete: Restrict)
+
+  tecnicoId       Int?
+  tecnico         User?         @relation("TecnicoAtendimento", fields: [tecnicoId], references: [id])
+
+  hiddenFromRequester Boolean @default(false)
+  hiddenFromTecnico   Boolean @default(false)
+
+  createdAt       DateTime      @default(now())
+  dataAceito      DateTime?
+  dataFechamento  DateTime?
+
+  @@map("tickets")
+}
