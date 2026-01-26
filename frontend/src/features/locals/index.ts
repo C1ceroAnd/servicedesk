@@ -1,0 +1,1 @@
+export { useLocals } from './hooks';

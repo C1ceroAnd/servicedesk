@@ -1,0 +1,50 @@
+/* Status Badge Classes */
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.status-badge.status-pending {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.status-badge.status-in-progress {
+  background-color: #e0f7f4;
+  color: #00695c;
+}
+
+.status-badge.status-completed {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+}
+
+/* Priority Badge Classes */
+.priority-badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.priority-badge.priority-high {
+  background-color: #fce4ec;
+  color: #880e4f;
+}
+
+.priority-badge.priority-medium {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.priority-badge.priority-low {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+}
