@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
-import { localsController } from '../controllers/locals.controller';
-import { authMiddleware, requireRoles } from '../middlewares/auth.middleware';
+import { localsController } from '../controllers/locals.controller.js';
+import { authMiddleware, requireRoles } from '../middlewares/auth.middleware.js';
 
 export async function localsRoutes(app: FastifyInstance) {
   const adminOnly = { preHandler: [authMiddleware, requireRoles(['ADMIN'])] };

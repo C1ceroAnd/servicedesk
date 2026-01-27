@@ -1,5 +1,5 @@
-import { ITokenProvider } from '../../ports/providers';
-import { JwtTokenProvider } from '../../../infrastructure/providers/JwtTokenProvider';
+import { ITokenProvider } from '../../ports/providers.js';
+import { JwtTokenProvider } from '../../../infrastructure/providers/JwtTokenProvider.js';
 
 export class RefreshToken {
   constructor(private readonly tokenProvider: JwtTokenProvider) {}

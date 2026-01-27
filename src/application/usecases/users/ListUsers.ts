@@ -1,4 +1,4 @@
-import { IUserRepository } from '../../ports/repositories';
+import { IUserRepository } from '../../ports/repositories.js';
 
 export class ListUsers {
   constructor(private readonly users: IUserRepository) {}

@@ -1,7 +1,7 @@
-import { IUserRepository } from '../../ports/repositories';
-import { IPasswordHasher, ITokenProvider } from '../../ports/providers';
-import { JwtTokenProvider } from '../../../infrastructure/providers/JwtTokenProvider';
-import { Role } from '../../../domain/roles';
+import { IUserRepository } from '../../ports/repositories.js';
+import { IPasswordHasher, ITokenProvider } from '../../ports/providers.js';
+import { JwtTokenProvider } from '../../../infrastructure/providers/JwtTokenProvider.js';
+import { Role } from '../../../domain/roles.js';
 
 export type LoginInput = { email: string; password: string };
 export type LoginOutput = { 

@@ -3,12 +3,12 @@ import cors from '@fastify/cors';
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 import { PrismaClient } from '@prisma/client';
-import { config } from './config/env';
-import { authRoutes } from './routes/auth.routes';
-import { usersRoutes } from './routes/users.routes';
-import { localsRoutes } from './routes/locals.routes';
-import { ticketsRoutes } from './routes/tickets.routes';
-import { container, TOKENS } from './core/container';
+import { config } from './config/env.js';
+import { authRoutes } from './routes/auth.routes.js';
+import { usersRoutes } from './routes/users.routes.js';
+import { localsRoutes } from './routes/locals.routes.js';
+import { ticketsRoutes } from './routes/tickets.routes.js';
+import { container, TOKENS } from './core/container.js';
 
 const app = Fastify({
   logger: true,

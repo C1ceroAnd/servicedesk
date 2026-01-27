@@ -1,5 +1,5 @@
-import { ITicketRepository } from '../../ports/repositories';
-import { Role } from '../../../domain/roles';
+import { ITicketRepository } from '../../ports/repositories.js';
+import { Role } from '../../../domain/roles.js';
 
 export class ListTickets {
   constructor(private readonly tickets: ITicketRepository) {}

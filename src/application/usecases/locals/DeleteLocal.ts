@@ -1,4 +1,4 @@
-import { ILocalRepository } from '../../ports/repositories';
+import { ILocalRepository } from '../../ports/repositories.js';
 
 export class DeleteLocal {
   constructor(private readonly locals: ILocalRepository) {}

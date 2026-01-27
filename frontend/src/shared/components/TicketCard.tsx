@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 interface TicketCardProps {
   id: number;
   title: string;
@@ -49,8 +47,6 @@ export function TicketCard({
       minute: '2-digit',
     });
   };
-
-  const [solutionText] = useState('');
 
   return (
     <div className="card" style={{ padding: '16px' }}>

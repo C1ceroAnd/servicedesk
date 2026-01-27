@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FiPlus, FiTrash2, FiCopy, FiAlertCircle, FiRefreshCw, FiX, FiArchive, FiEdit2 } from 'react-icons/fi';
+import { FiPlus, FiTrash2, FiCopy, FiAlertCircle, FiRefreshCw, FiX, FiArchive } from 'react-icons/fi';
 import { useAuth } from '../../auth/hooks/useAuth';
 import { useTickets } from '../../tickets/hooks/useTickets';
 import { useUsers } from '../hooks/useUsers';

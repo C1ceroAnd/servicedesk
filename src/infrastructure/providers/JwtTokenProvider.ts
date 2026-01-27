@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { ITokenProvider } from '../../application/ports/providers';
-import { config } from '../../config/env';
+import { ITokenProvider } from '../../application/ports/providers.js';
+import { config } from '../../config/env.js';
 
 export interface TokenPair {
   accessToken: string;

@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
-import { ticketsController } from '../controllers/tickets.controller';
-import { authMiddleware, requireRoles } from '../middlewares/auth.middleware';
+import { ticketsController } from '../controllers/tickets.controller.js';
+import { authMiddleware, requireRoles } from '../middlewares/auth.middleware.js';
 
 export async function ticketsRoutes(app: FastifyInstance) {
   const authenticated = { preHandler: [authMiddleware] };

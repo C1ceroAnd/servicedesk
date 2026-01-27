@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
-import { usersController } from '../controllers/users.controller';
-import { authMiddleware, requireRoles } from '../middlewares/auth.middleware';
+import { usersController } from '../controllers/users.controller.js';
+import { authMiddleware, requireRoles } from '../middlewares/auth.middleware.js';
 
 export async function usersRoutes(app: FastifyInstance) {
   const adminOnly = { preHandler: [authMiddleware, requireRoles(['ADMIN'])] };

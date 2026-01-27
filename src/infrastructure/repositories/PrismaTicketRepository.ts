@@ -1,5 +1,5 @@
 import { PrismaClient, Prisma } from '@prisma/client';
-import { ITicketRepository, TicketWithRelations } from '../../application/ports/repositories';
+import { ITicketRepository, TicketWithRelations } from '../../application/ports/repositories.js';
 
 export class PrismaTicketRepository implements ITicketRepository {
   constructor(private readonly prisma: PrismaClient) {}

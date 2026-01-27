@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { ILocalRepository } from '../../application/ports/repositories';
+import { ILocalRepository } from '../../application/ports/repositories.js';
 
 export class PrismaLocalRepository implements ILocalRepository {
   constructor(private readonly prisma: PrismaClient) {}

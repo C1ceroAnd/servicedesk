@@ -1,4 +1,4 @@
-import { IUserRepository, ITicketRepository } from '../../ports/repositories';
+import { IUserRepository, ITicketRepository } from '../../ports/repositories.js';
 
 export class DeleteUser {
   constructor(private readonly users: IUserRepository, private readonly tickets: ITicketRepository) {}

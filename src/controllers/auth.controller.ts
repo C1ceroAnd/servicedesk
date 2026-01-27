@@ -1,9 +1,9 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { container, TOKENS } from '../core/container';
-import { RegisterUser } from '../application/usecases/auth/RegisterUser';
-import { LoginUser } from '../application/usecases/auth/LoginUser';
-import { RefreshToken } from '../application/usecases/auth/RefreshToken';
+import { container, TOKENS } from '../core/container.js';
+import { RegisterUser } from '../application/usecases/auth/RegisterUser.js';
+import { LoginUser } from '../application/usecases/auth/LoginUser.js';
+import { RefreshToken } from '../application/usecases/auth/RefreshToken.js';
 
 const registerSchema = z.object({
   name: z.string().min(2),

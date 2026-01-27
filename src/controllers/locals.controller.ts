@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { container, TOKENS } from '../core/container';
-import { CreateLocal } from '../application/usecases/locals/CreateLocal';
-import { ListLocals } from '../application/usecases/locals/ListLocals';
-import { DeleteLocal } from '../application/usecases/locals/DeleteLocal';
-import { UpdateLocal } from '../application/usecases/locals/UpdateLocal';
+import { container, TOKENS } from '../core/container.js';
+import { CreateLocal } from '../application/usecases/locals/CreateLocal.js';
+import { ListLocals } from '../application/usecases/locals/ListLocals.js';
+import { DeleteLocal } from '../application/usecases/locals/DeleteLocal.js';
+import { UpdateLocal } from '../application/usecases/locals/UpdateLocal.js';
 
 const createLocalSchema = z.object({
   name: z.string().min(2),

@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { container, TOKENS } from '../core/container';
-import { CreateUser } from '../application/usecases/users/CreateUser';
-import { ListUsers } from '../application/usecases/users/ListUsers';
-import { UpdateUser } from '../application/usecases/users/UpdateUser';
-import { DeleteUser } from '../application/usecases/users/DeleteUser';
+import { container, TOKENS } from '../core/container.js';
+import { CreateUser } from '../application/usecases/users/CreateUser.js';
+import { ListUsers } from '../application/usecases/users/ListUsers.js';
+import { UpdateUser } from '../application/usecases/users/UpdateUser.js';
+import { DeleteUser } from '../application/usecases/users/DeleteUser.js';
 
 const createUserSchema = z.object({
   name: z.string().min(2),

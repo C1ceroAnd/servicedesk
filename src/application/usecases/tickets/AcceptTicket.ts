@@ -1,4 +1,4 @@
-import { ITicketRepository } from '../../ports/repositories';
+import { ITicketRepository } from '../../ports/repositories.js';
 
 export class AcceptTicket {
   constructor(private readonly tickets: ITicketRepository) {}

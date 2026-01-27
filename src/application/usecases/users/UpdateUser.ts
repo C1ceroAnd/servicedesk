@@ -1,6 +1,6 @@
-import { IUserRepository, ILocalRepository } from '../../ports/repositories';
-import { IPasswordHasher } from '../../ports/providers';
-import { normalizeRole } from '../../../domain/roles';
+import { IUserRepository, ILocalRepository } from '../../ports/repositories.js';
+import { IPasswordHasher } from '../../ports/providers.js';
+import { normalizeRole } from '../../../domain/roles.js';
 
 export class UpdateUser {
   constructor(

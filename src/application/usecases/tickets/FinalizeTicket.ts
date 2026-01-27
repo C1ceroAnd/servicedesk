@@ -1,4 +1,4 @@
-import { ITicketRepository } from '../../ports/repositories';
+import { ITicketRepository } from '../../ports/repositories.js';
 
 export class FinalizeTicket {
   constructor(private readonly tickets: ITicketRepository) {}

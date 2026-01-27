@@ -1,12 +1,12 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
-import { container, TOKENS } from '../core/container';
-import { CreateTicket } from '../application/usecases/tickets/CreateTicket';
-import { ListTickets } from '../application/usecases/tickets/ListTickets';
-import { AcceptTicket } from '../application/usecases/tickets/AcceptTicket';
-import { FinalizeTicket } from '../application/usecases/tickets/FinalizeTicket';
-import { CancelTicket } from '../application/usecases/tickets/CancelTicket';
-import { RejectTicket } from '../application/usecases/tickets/RejectTicket';
+import { container, TOKENS } from '../core/container.js';
+import { CreateTicket } from '../application/usecases/tickets/CreateTicket.js';
+import { ListTickets } from '../application/usecases/tickets/ListTickets.js';
+import { AcceptTicket } from '../application/usecases/tickets/AcceptTicket.js';
+import { FinalizeTicket } from '../application/usecases/tickets/FinalizeTicket.js';
+import { CancelTicket } from '../application/usecases/tickets/CancelTicket.js';
+import { RejectTicket } from '../application/usecases/tickets/RejectTicket.js';
 
 const createSchema = z.object({
   title: z.string().min(3),

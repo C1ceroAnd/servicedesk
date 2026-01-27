@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import jwt from 'jsonwebtoken';
-import { config } from '../config/env';
+import { config } from '../config/env.js';
 
 type JwtPayload = {
   id: number;

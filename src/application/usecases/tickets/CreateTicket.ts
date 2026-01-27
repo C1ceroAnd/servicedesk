@@ -1,5 +1,5 @@
-import { ITicketRepository, IUserRepository, ILocalRepository } from '../../ports/repositories';
-import { Role } from '../../../domain/roles';
+import { ITicketRepository, IUserRepository, ILocalRepository } from '../../ports/repositories.js';
+import { Role } from '../../../domain/roles.js';
 
 export class CreateTicket {
   constructor(
