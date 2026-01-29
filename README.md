@@ -325,4 +325,11 @@ JWT_REFRESH_EXPIRES_IN="7d"
 
 ---
 
+## Colaboradores
+
+Cairon Ferreira Prado
+Cícero Andrade Santos
+Fabricío Mota de Carvalho
+Matusalen Costa Alves
+
 **Última atualização:** Janeiro 2026
