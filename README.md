@@ -1,92 +1,139 @@
 # ServiceDesk - Sistema de Gestão de Chamados
 
+[![Node.js](https://img.shields.io/badge/Node.js-22.x-green.svg)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB.svg)](https://reactjs.org/)
+[![Fastify](https://img.shields.io/badge/Fastify-5.7-000000.svg)](https://fastify.io/)
+[![Prisma](https://img.shields.io/badge/Prisma-5.21-2D3748.svg)](https://prisma.io/)
+
 Solução prática e segura para abrir, atender e administrar chamados técnicos.
 
-## Visão Geral
+## 📋 Visão Geral
 
 O ServiceDesk centraliza solicitações de suporte: usuários criam chamados, técnicos atendem e administradores gerenciam usuários, locais e tickets com salvaguardas para evitar inconsistências.
 
-## Stack Tecnológico
+### Funcionalidades Principais
+
+- 🔐 **Autenticação JWT** com Access Token + Refresh Token
+- 👥 **3 Perfis de Usuário**: ADMIN, TÉCNICO e USER
+- 📍 **Gestão de Locais**: Cadastro dinâmico de locais
+- 🎫 **Gestão de Chamados**: Fluxo completo PENDENTE → EM_ANDAMENTO → CONCLUÍDO
+- 🔍 **Busca Inteligente**: Por título, descrição ou local
+- 📊 **Dashboard Administrativo**: Visão completa do sistema
+
+## 🛠️ Stack Tecnológico
 
 | Camada | Tecnologia |
 |--------|-----------|
-| Frontend | React 18 + Vite + TypeScript |
-| Backend | Node.js + Fastify + TypeScript |
+| Frontend | React 18 + Vite 7 + TypeScript |
+| Backend | Node.js + Fastify 5 + TypeScript |
 | Database | SQLite (dev) / PostgreSQL (prod) + Prisma ORM |
-| Segurança | JWT + Bcryptjs |
+| Testes | Jest 30 + Testing Library |
+| Segurança | JWT + Bcryptjs + RBAC |
+| Validação | Zod |
 
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```
 servicedesk/
-├── src/
-│   ├── application/        # Use cases & ports
-│   ├── controllers/        # HTTP endpoints
-│   ├── routes/             # Fastify route schemas
-│   ├── infrastructure/     # Prisma repositories, providers
-│   ├── middlewares/
-│   ├── config/             # env, tokens
-│   ├── core/               # DI container
-│   ├── domain/             # Roles e tipos
-│   ├── frontend/           # React + Vite app
-│   └── server.ts
-├── prisma/                 # Schema e migrations
-├── docs/                   # Documentação (API, requisitos, casos de uso)
-├── package.json            # Dependências root
-├── tsconfig.json           # Backend config
-└── README.md
+├── src/                        # Backend (API)
+│   ├── application/            # Use cases & ports
+│   │   ├── usecases/           # Lógica de negócio
+│   │   └── ports/              # Interfaces (repositories, providers)
+│   ├── controllers/            # HTTP handlers
+│   ├── routes/                 # Fastify route schemas
+│   ├── infrastructure/         # Implementações (Prisma, JWT, Bcrypt)
+│   ├── middlewares/            # Auth middleware
+│   ├── config/                 # Variáveis de ambiente
+│   ├── core/                   # DI container
+│   ├── domain/                 # Roles e tipos
+│   └── server.ts               # Entry point
+│
+├── frontend/                   # Frontend (React + Vite)
+│   └── src/
+│       ├── features/           # Feature-first (auth, tickets, users, locals)
+│       ├── shared/             # Componentes compartilhados
+│       ├── services/           # API client, AuthService
+│       └── app/                # Router e layout
+│
+├── prisma/                     # Schema, migrations e seed
+├── tests/                      # Testes unitários e de integração
+├── docs/                       # Documentação completa
+└── package.json                # Dependências e scripts
 ```
 
-## Quick Start
+## 🚀 Quick Start
+
+### Pré-requisitos
+
+- Node.js 22.x ou superior
+- npm 10.x ou superior
 
 ### Instalação
 
 ```bash
+# Clonar o repositório
+git clone https://github.com/C1ceroAnd/servicedesk.git
+cd servicedesk
+
 # Instalar dependências (backend + frontend)
 npm install
 
 # Configurar variáveis de ambiente
 cp .env.example .env
+
+# Configurar banco de dados
+npx prisma migrate dev
+npm run seed
 ```
 
 ### Desenvolvimento
 
 ```bash
-# Rodar ambos API e Web em paralelo
+# Rodar API e Frontend em paralelo
 npm run dev
 
 # Ou rodar separadamente:
-npm run dev:api   # Terminal 1
-npm run dev:web   # Terminal 2
+npm run dev:api   # Terminal 1 - Backend
+npm run dev:web   # Terminal 2 - Frontend
 ```
 
-URLs importantes:
-- Backend: http://localhost:3333
-- Frontend: http://localhost:5173
-- Swagger Docs: http://localhost:3333/docs
+### URLs
+
+| Serviço | URL |
+|---------|-----|
+| Frontend | http://localhost:5173 |
+| Backend API | http://localhost:3333 |
+| Swagger Docs | http://localhost:3333/docs |
 
 ### Build & Deploy
 
 ```bash
-# Build backend + frontend
+# Build completo (backend + frontend)
 npm run build
 
-# Rodar servidor em produção
+# Rodar em produção
 npm start
 ```
 
-## Arquitetura
+## 🏗️ Arquitetura
 
 ### Backend - Clean Architecture
 
 ```
-Domain Layer (roles.ts, types)
-    ↓
-Application Layer (Use Cases, Ports/Interfaces)
-    ↓
-Infrastructure Layer (Repositories, Providers, Prisma)
-    ↓
-Presentation Layer (Controllers, Routes)
+┌─────────────────────────────────────────────────────────┐
+|                    Presentation Layer                   │
+│              (Controllers, Routes, Middlewares)         │
+├─────────────────────────────────────────────────────────┤
+│                    Application Layer                    │
+│                   (Use Cases, Ports)                    │
+├─────────────────────────────────────────────────────────┤
+│                   Infrastructure Layer                  │
+│            (Repositories, Providers, Prisma)            │
+├─────────────────────────────────────────────────────────┤
+│                      Domain Layer                       │
+│                    (Roles, Types)                       │
+└─────────────────────────────────────────────────────────┘
 ```
 
 **DI Container**: Gerencia todas as dependências
@@ -106,7 +153,7 @@ Cada feature é auto-contida com:
 
 **Services**: Camada de comunicação (API, domain logic)
 
-## Autenticação e Segurança
+## 🔐 Autenticação e Segurança
 
 ### Sistema de Tokens JWT
 
@@ -141,7 +188,38 @@ O projeto implementa um sistema robusto de autenticação com **Access Token** e
 - Refresh Token rotation (novo token a cada renovação)
 - Logout limpa todos os tokens do localStorage
 
-## Tecnologias
+## 🧪 Testes
+
+O projeto possui uma suite completa de testes unitários e de integração:
+
+```bash
+# Rodar todos os testes
+npm test
+
+# Modo watch (desenvolvimento)
+npm run test:watch
+
+# Com coverage
+npm run test:coverage
+
+# Modo verbose
+npm run test:verbose
+```
+
+### Estrutura de Testes
+
+```
+tests/
+├── unit/
+│   ├── usecases/           # Testes de use cases
+│   ├── infrastructure/     # Testes de providers
+│   └── frontend/           # Testes de serviços e componentes
+└── integration/
+    ├── backend/            # Fluxos completos da API
+    └── frontend/           # Autenticação e route guards
+```
+
+## 💻 Tecnologias
 
 ### Backend
 - `fastify` - Framework HTTP
@@ -157,46 +235,55 @@ O projeto implementa um sistema robusto de autenticação com **Access Token** e
 - `axios` - HTTP client
 - `typescript` - Type safety
 
-## Scripts
+## 📜 Scripts Disponíveis
 
-```bash
-npm run dev              # Desenvolvimento completo
-npm run dev:api         # Apenas API
-npm run dev:web         # Apenas Frontend
-npm run build           # Build backend + frontend
-npm run build:api       # Build backend
-npm run build:web       # Build frontend
-npm run start           # Rodar servidor (produção)
-npm run seed            # Seed database
-npm run preview         # Preview frontend build
-```
+| Script | Descrição |
+|--------|-----------|
+| `npm run dev` | Desenvolvimento completo (API + Web) |
+| `npm run dev:api` | Apenas API |
+| `npm run dev:web` | Apenas Frontend |
+| `npm run build` | Build backend + frontend |
+| `npm run build:api` | Build apenas backend |
+| `npm run build:web` | Build apenas frontend |
+| `npm start` | Rodar servidor (produção) |
+| `npm run seed` | Popular banco de dados |
+| `npm test` | Rodar testes |
+| `npm run test:watch` | Testes em modo watch |
+| `npm run test:coverage` | Testes com coverage |
+| `npm run preview` | Preview do frontend build |
 
-## Documentação
+## 📚 Documentação
 
 Todos os documentos estão em `docs/`:
 
 | Documento | Propósito |
 |-----------|-----------|
-| [CONTEXTO_DO_PROJETO.md](docs/CONTEXTO_DO_PROJETO.md) | Visão geral |
+| [CONTEXTO_DO_PROJETO.md](docs/CONTEXTO_DO_PROJETO.md) | Visão geral e escopo |
 | [CONTRATO_API.md](docs/CONTRATO_API.md) | Endpoints, requests e responses |
-| [SWAGGER.md](docs/SWAGGER.md) | Documentação Swagger UI (interativa) |
+| [SWAGGER.md](docs/SWAGGER.md) | Documentação Swagger UI |
 | [ARQUITETURA_E_ESTRUTURA.md](docs/ARQUITETURA_E_ESTRUTURA.md) | Organização de pastas e camadas |
 | [MODELAGEM_DADOS.md](docs/MODELAGEM_DADOS.md) | Schema Prisma e models |
-| [REQUISITOS_FUNCIONAIS.md](docs/REQUISITOS_FUNCIONAIS.md) | Requisitos funcionais atualizados |
+| [REQUISITOS_FUNCIONAIS.md](docs/REQUISITOS_FUNCIONAIS.md) | Requisitos funcionais |
 | [REQUISITOS_NAO_FUNCIONAIS.md](docs/REQUISITOS_NAO_FUNCIONAIS.md) | Requisitos não funcionais |
-| [REQUISITOS_E_REGRAS.md](docs/REQUISITOS_E_REGRAS.md) | Regras de negócio |
-| [CASOS_DE_USO.md](docs/CASOS_DE_USO.md) | Casos de uso |
+| [CASOS_DE_USO.md](docs/CASOS_DE_USO.md) | Casos de uso detalhados |
 | [HISTORIAS_USUARIO.md](docs/HISTORIAS_USUARIO.md) | Histórias de usuário |
-| [GUIA_DESENVOLVIMENTO.md](docs/GUIA_DESENVOLVIMENTO.md) | Como rodar, desenvolver e debugar |
-| [GUIA_TESTES.md](docs/GUIA_TESTES.md) | Como rodar testes e entender coverage |
+| [GUIA_DESENVOLVIMENTO.md](docs/GUIA_DESENVOLVIMENTO.md) | Como desenvolver e debugar |
 
-Acesse http://localhost:3333/docs para documentação interativa.
+> 💡 Acesse http://localhost:3333/docs para documentação interativa (Swagger UI).
 
-## Desenvolvimento
+## 👥 Perfis de Usuário
+
+| Role | Descrição | Permissões |
+|------|-----------|------------|
+| **USER** | Usuário comum | Criar/visualizar seus chamados |
+| **TÉCNICO** | Atendente | Aceitar, resolver e buscar chamados |
+| **ADMIN** | Administrador | Gerenciar usuários, locais e visualizar tudo |
+
+## 🛠️ Desenvolvimento
 
 ### Adicionar Nova Feature (Frontend)
 
-1. Criar pasta `src/frontend/src/features/[nome]/`
+1. Criar pasta `frontend/src/features/[nome]/`
 2. Estrutura:
    ```
    features/[nome]/
@@ -209,19 +296,35 @@ Acesse http://localhost:3333/docs para documentação interativa.
 
 ### Adicionar Novo Use Case (Backend)
 
-1. Criar em `src/application/usecases/[dominio]/[OperacaoDo].ts`
+1. Criar em `src/application/usecases/[dominio]/[OperacaoNome].ts`
 2. Implementar interface com método `execute()`
 3. Registrar no `src/core/container.ts`
 4. Usar em controller via `container.resolve(TOKENS.xxx)`
 
-## Licença
+## 🔧 Variáveis de Ambiente
 
-ISC
+```bash
+# Servidor
+PORT=3333
 
-## Contribuição
+# Database
+DATABASE_URL="file:./dev.db"
 
-See CONTRIBUTING.md
+# JWT
+JWT_SECRET="seu-secret-aqui"
+JWT_EXPIRES_IN="15m"
+JWT_REFRESH_SECRET="seu-refresh-secret-aqui"
+JWT_REFRESH_EXPIRES_IN="7d"
+```
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie sua feature branch (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'feat: adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
 
 ---
 
-Última atualização: Janeiro 2026
+**Última atualização:** Janeiro 2026
