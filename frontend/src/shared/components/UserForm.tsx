@@ -89,7 +89,6 @@ export function UserForm({ isOpen, onClose, onSubmit, role, editingUser, locals 
                 <option key={local.id} value={local.id.toString()}>{local.name}</option>
               ))}
             </select>
-            {!editingUser && <small className="text-muted">Se o local não existir, será criado automaticamente</small>}
           </div>
         )}
 

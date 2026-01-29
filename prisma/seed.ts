@@ -30,9 +30,6 @@ async function upsertUser(params: { name: string; email: string; password: strin
 async function main() {
   console.log('🌱 Seeding database...');
 
-  const localCentral = await ensureLocal('Matriz');
-  const localFilial = await ensureLocal('Filial');
-
   const admin = await upsertUser({
     name: 'Admin',
     email: 'admin@servicedesk.local',
