@@ -269,8 +269,6 @@ Todos os documentos estão em `docs/`:
 | [HISTORIAS_USUARIO.md](docs/HISTORIAS_USUARIO.md) | Histórias de usuário |
 | [GUIA_DESENVOLVIMENTO.md](docs/GUIA_DESENVOLVIMENTO.md) | Como desenvolver e debugar |
 
-> 💡 Acesse http://localhost:3333/docs para documentação interativa (Swagger UI).
-
 ## 👥 Perfis de Usuário
 
 | Role | Descrição | Permissões |
